@@ -1,0 +1,138 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="TipCalculator.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- LOCALIZATION NOTE:
+            To localize the displayed strings copy their values to appropriately named
+            keys in the app's neutral language resource file (AppResources.resx) then
+            replace the hard-coded text value between the attributes' quotation marks
+            with the binding clause whose path points to that string name.
+
+            For example:
+
+                Text="{Binding Path=LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}"
+
+            This binding points to the template's string resource named "ApplicationTitle".
+
+            Adding supported languages in the Project Properties tab will create a
+            new resx file per language that can carry the translated values of your
+            UI strings. The binding in these examples will cause the value of the
+            attributes to be drawn from the .resx file that matches the
+            CurrentUICulture of the app at run time.
+         -->
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock Text="Felix Felicis" Style="{StaticResource PhoneTextNormalStyle}" Margin="12,0"/>
+            <TextBlock Text="Tip Calculator" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0" Tap="calculate">
+           
+            <!--Represents the down arrow image-->
+            <Image x:Name="DownArrow"
+                   Height="50"
+                   Width="50"
+                   Source="DownArrow.png" Margin="153,333,253,224" Tap="downTap"/>
+            <!--Represents the up arrow image-->
+            <Image x:Name="UpArrow"
+                   Height="50"
+                   Width="50"
+                   Source="UpArrow.png" Margin="153,278,253,279" Tap="upTap" />
+            
+            
+            
+            <TextBlock x:Name="textBlockTotal"
+                       Text="Total" 
+                       TextAlignment="Left" Margin="14,468,391,93" Tap="calculate" />
+            <!--Actual text representing the total of the bill with tip-->
+            <TextBlock x:Name="txtTotal"
+                       Text=""
+                       TextAlignment="Right" Margin="250,468,25,93" Tap="calculate" />
+            
+            
+            
+            <!--Text Block for tip percentage-->
+            <TextBlock x:Name="textBlockTipPercentage"
+                       Text="Tip %" Margin="11,122,391,454" />
+            <!--Actual text representing tip percentage-->
+            <TextBlock x:Name="txtTipPercentage"
+                       Text=""
+                       TextAlignment="Right" Margin="98,122,284,418" />
+            <!--Text representing the actual amount of tip that is required
+                based on the percentage and the meal cost specified
+            -->
+            <TextBlock x:Name="txtTipAmount"
+                       Text=""
+                       TextAlignment="Right" Margin="250,122,25,436" />
+            
+            
+            
+            <!--Text Block for the cost of a meal-->
+            <TextBlock x:Name="textBlockMealCost"
+                       Text="Meal Cost"
+                       TextAlignment="Left" Margin="11,23,329,550"/>
+            <!--Actual text representing the total cost of a meal-->
+            <TextBox x:Name="txtMealCost"
+                       TextAlignment="Right" Margin="250,10,10,516" InputScope="Number" />
+            
+            
+            
+            <!--Text Block for the split amount which includes tip -->
+            <TextBlock x:Name="textBlockSplitAmount"
+                       Text="Split Amount"
+                       TextAlignment="Left" Margin="11,395,317,178" />
+            <!--Actual text representing the split amount-->
+            <TextBlock x:Name="txtSplitAmount"
+                       Text=""
+                       TextAlignment="Right" Margin="250,392,25,162" />
+            
+            
+            
+            <!--Text Block for the number of people the bill is being
+                split among
+            -->
+            <TextBlock x:Name="textBlockSplitAmong"
+                       Text="Split Among"
+                       TextAlignment="Left" Margin="11,303,330,260" />
+            <!--Actual text representing number of people the bill is
+                being split among
+            -->
+            <TextBlock x:Name="txtSplitAmong"
+                       Text=""
+                       TextAlignment="Right" Margin="250,290,25,260" />
+            <Slider x:Name="slider1"
+                    Value="15"
+                    Minimum="0"
+                    Maximum="35" Margin="0,178,284,344" Foreground="#FF00FF68" ValueChanged="tipChanges" />
+        </Grid>
+
+        <!--Uncomment to see an alignment grid to help ensure your controls are
+            aligned on common boundaries.  The image has a top margin of -32px to
+            account for the System Tray. Set this to 0 (or remove the margin altogether)
+            if the System Tray is hidden.
+
+            Before shipping remove this XAML and the image itself.-->
+        <!--<Image Source="/Assets/AlignmentGrid.png" VerticalAlignment="Top" Height="800" Width="480" Margin="0,-32,0,0" Grid.Row="0" Grid.RowSpan="2" IsHitTestVisible="False" />-->
+    </Grid>
+
+</phone:PhoneApplicationPage>
